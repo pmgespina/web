@@ -17,9 +17,14 @@ public class Medico {
     private String email;
     private String especialidad;
 
-    @OneToMany(mappedBy = "medico", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference // Marca esta relación como la gestionada
-    private List<Paciente> pacientes = new ArrayList<>();
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(
+        name = "medico_paciente",
+        joinColumns = @JoinColumn(name = "medico_id"),
+        inverseJoinColumns = @JoinColumn(name = "paciente_id")
+    )
+private List<Paciente> pacientes = new ArrayList<>();
+
 
     public void addPaciente(Paciente paciente) {
         pacientes.add(paciente);
