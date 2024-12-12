@@ -37,6 +37,10 @@ body {
   }
   
   .feature-card {
+    display: flex;
+    flex-direction: column; 
+    justify-content: space-between; 
+    align-items: center;
     background: white;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -55,6 +59,7 @@ body {
     font-family:'Poppins';
     font-size: 1rem;
     color: #555;
+    margin-bottom: auto;
   }
 
   .feature-card img {
@@ -64,6 +69,7 @@ body {
   }
 
   .actions {
+    margin-top: auto;
     font-family:'Poppins';
     margin-top: 30px;
     display: flex;
