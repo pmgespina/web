@@ -10,5 +10,6 @@ import com.example.demo.model.Mensaje;
 @Repository
 public interface MensajeRepository extends JpaRepository<Mensaje, Long> {
     List<Mensaje> findByPacienteIdAndMedicoId(Long pacienteId, Long medicoId);
+    List<Mensaje> findByMedicoIdAndPacienteId(Long medicoId, Long pacienteId);
 }
 

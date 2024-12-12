@@ -5,8 +5,6 @@ import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 @Entity
 public class Medico {
     @Id
@@ -16,15 +14,10 @@ public class Medico {
     private String apellido;
     private String email;
     private String especialidad;
-
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinTable(
-        name = "medico_paciente",
-        joinColumns = @JoinColumn(name = "medico_id"),
-        inverseJoinColumns = @JoinColumn(name = "paciente_id")
-    )
-private List<Paciente> pacientes = new ArrayList<>();
-
+    private String password;
+    
+    @OneToMany(mappedBy = "medico", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Paciente> pacientes = new ArrayList<>();
 
     public void addPaciente(Paciente paciente) {
         pacientes.add(paciente);
@@ -75,6 +68,14 @@ private List<Paciente> pacientes = new ArrayList<>();
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+    
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public List<Paciente> getPacientes() {
