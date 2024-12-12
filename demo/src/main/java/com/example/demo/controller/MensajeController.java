@@ -21,17 +21,23 @@ public class MensajeController {
     @Autowired
     private MensajeService mensajeService;
 
+    // Endpoint para enviar un mensaje
     @PostMapping
-    public ResponseEntity<Mensaje> enviarMensaje(@RequestBody Mensaje mensaje) {
-        Mensaje nuevoMensaje = mensajeService.enviarMensaje(mensaje);
-        return ResponseEntity.status(HttpStatus.CREATED).body(nuevoMensaje);
+    public ResponseEntity<?> enviarMensaje(@RequestBody Mensaje mensaje) {
+        try {
+            Mensaje nuevoMensaje = mensajeService.enviarMensaje(mensaje);
+            return ResponseEntity.status(HttpStatus.CREATED).body(nuevoMensaje);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
     }
 
+    // Endpoint para obtener mensajes entre paciente y médico
     @GetMapping
     public ResponseEntity<List<Mensaje>> obtenerMensajes(
-            @RequestParam Long pacienteId, @RequestParam Long medicoId) {
+            @RequestParam Long pacienteId,
+            @RequestParam Long medicoId) {
         List<Mensaje> mensajes = mensajeService.obtenerMensajes(pacienteId, medicoId);
         return ResponseEntity.ok(mensajes);
     }
 }
-
