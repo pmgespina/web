@@ -2,6 +2,9 @@ package com.example.demo.controller;
 
 import com.example.demo.model.Paciente;
 import com.example.demo.service.PacienteService;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,8 +34,13 @@ public class PacienteController {
 
     // Crear un nuevo paciente
     @PostMapping
-    public Paciente crearPaciente(@RequestBody Paciente paciente) {
-        return pacienteService.guardarPaciente(paciente);
+    public ResponseEntity<?> crearPaciente(@RequestBody Paciente paciente) {
+        try {
+            Paciente pacienteGuardado = pacienteService.guardarPaciente(paciente);
+            return ResponseEntity.status(HttpStatus.CREATED).body(pacienteGuardado);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(null);
+        }
     }
 
     // Método para actualizar un paciente por ID

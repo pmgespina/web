@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.model.Medico;
 import com.example.demo.service.MedicoService;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,26 +28,42 @@ public class MedicoController {
 
     // Obtener un médico por ID
     @GetMapping("/{id}")
-    public Optional<Medico> obtenerPorId(@PathVariable Long id) {
-        return medicoService.obtenerPorId(id);
+    public ResponseEntity<Medico> obtenerPorId(@PathVariable Long id) {
+        return medicoService.obtenerPorId(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
     // Guardar o actualizar un médico
     @PostMapping
-    public Medico guardar(@RequestBody Medico medico) {
-        return medicoService.guardar(medico);
+    public ResponseEntity<Medico> guardar(@RequestBody Medico medico) {
+        try {
+            Medico medicoGuardado = medicoService.guardar(medico);
+            return ResponseEntity.status(HttpStatus.CREATED).body(medicoGuardado);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(null);
+        }
     }
 
     // Método para actualizar un médico por ID
     @PutMapping("/{id}")
     public ResponseEntity<Medico> actualizarMedico(@PathVariable Long id, @RequestBody Medico medico) {
-        Medico medicoActualizado = medicoService.actualizarMedico(id, medico);
-        return ResponseEntity.ok(medicoActualizado);
+        try {
+            Medico medicoActualizado = medicoService.actualizarMedico(id, medico);
+            return ResponseEntity.ok(medicoActualizado);
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(null);
+        }
     }    
 
     // Eliminar un médico por ID
     @DeleteMapping("/{id}")
-    public void eliminar(@PathVariable Long id) {
-        medicoService.eliminar(id);
+    public ResponseEntity<Void> eliminar(@PathVariable Long id) {
+        try {
+            medicoService.eliminar(id);
+            return ResponseEntity.noContent().build();
+        } catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 }
