@@ -4,6 +4,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.CascadeType;
 
 @Entity
 public class Usuario {
@@ -15,7 +18,31 @@ public class Usuario {
     private String password;
     private String rol; // Paciente, Medico
 
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "medico_id")
+    private Medico medico;
+
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "paciente_id")
+    private Paciente paciente;
+
     // Getters y Setters
+
+    public Medico getMedico() {
+        return medico;
+    }
+
+    public void setMedico(Medico medico) {
+        this.medico = medico;
+    }
+
+    public Paciente getPaciente() {
+        return paciente;
+    }
+
+    public void setPaciente(Paciente paciente) {
+        this.paciente = paciente;
+    }
     
     public String getUsername() {
         return username;
@@ -39,6 +66,13 @@ public class Usuario {
 
     public void setRol(String rol) {
         this.rol = rol;
+        if ("Medico".equalsIgnoreCase(rol)) {
+            this.medico = new Medico();
+            this.medico.setNombre(this.username); // Ejemplo: usa el nombre de usuario como nombre
+        } else if ("Paciente".equalsIgnoreCase(rol)) {
+            this.paciente = new Paciente();
+            this.paciente.setNombre(this.username); // Ejemplo: usa el nombre de usuario como nombre
+        }
     }
 }
 

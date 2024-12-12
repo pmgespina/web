@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.model.Usuario;
 import com.example.demo.service.UsuarioService;
+import com.example.demo.repository.UsuarioRepository;
 
 @RestController
 @RequestMapping("/api/usuarios")
@@ -19,6 +22,8 @@ public class UsuarioController {
 
     @Autowired
     private UsuarioService usuarioService;
+    @Autowired
+    private UsuarioRepository usuarioRepository;
 
     @PostMapping
     public ResponseEntity<Usuario> guardarUsuario(@RequestBody Usuario usuario) {
@@ -30,6 +35,11 @@ public class UsuarioController {
         return usuarioService.buscarPorUsername(username)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
+    }
+
+    @GetMapping
+    public List<Usuario> obtenerTodosLosUsuarios() {
+        return usuarioRepository.findAll();
     }
 }
 

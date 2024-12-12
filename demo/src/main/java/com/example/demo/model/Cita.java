@@ -19,6 +19,8 @@ public class Cita {
 
     private String descripcion;
 
+    private String especialidad;
+
     // Getters y Setters
     public Long getId() {
         return id;
@@ -58,5 +60,13 @@ public class Cita {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public String getEspecialidad() {
+        return especialidad;
+    }
+
+    public void setEspecialidad(String especialidad) {
+        this.especialidad = especialidad;
     }
 }
