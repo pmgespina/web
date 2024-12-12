@@ -10,7 +10,7 @@ export class MensajesService {
 
   constructor(private http: HttpClient) {}
 
-  enviarMensaje(mensaje: { emisor_id: number; receptor_id: number; contenido: string }): Observable<any> {
+  enviarMensaje(mensaje: { emisor_id: number; receptor_id: number; contenido: string,  }): Observable<any> {
     return this.http.post(this.apiUrl, mensaje);
   }
 

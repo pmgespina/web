@@ -32,3 +32,14 @@
     cursor: not-allowed;
   }
   
+  .login-container {
+    width: 300px;
+    margin: auto;
+    text-align: center;
+  }
+  
+  .error {
+    color: red;
+    margin-top: 10px;
+  }
+  
