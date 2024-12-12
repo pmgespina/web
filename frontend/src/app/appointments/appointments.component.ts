@@ -32,7 +32,7 @@ export class AppointmentsComponent {
     const dUltimo = new Date(year, month + 1, 0); //ultimo dia del mes
 
     const daysInMonth = dUltimo.getDate();
-    const startDayOfWeek =  (dUno.getDay() + 6) % 7;
+    const startDayOfWeek =  (dUno.getDay());
 
     let currentDay = 1;
     const weeks = [];
