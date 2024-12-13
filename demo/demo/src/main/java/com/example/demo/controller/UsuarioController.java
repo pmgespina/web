@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,6 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 import com.example.demo.model.Usuario;
 import com.example.demo.service.UsuarioService;
@@ -53,12 +57,13 @@ public class UsuarioController {
     }
 
     @PostMapping("/login")
+    @CrossOrigin(origins = "http://localhost:4200") // permite solicitudes desde Angular
     public ResponseEntity<?> login(@RequestBody Usuario usuario) {
-        // Busca al usuario en la base de datos usando username y password
         return usuarioRepository.findByUsernameAndPassword(usuario.getUsername(), usuario.getPassword())
-                .map(u -> ResponseEntity.ok("Login exitoso"))
-                .orElse(ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Usuario o contraseña incorrectos"));
-}
+                .map(u -> ResponseEntity.ok(Map.of("message", "Login exitoso", "user", u, "rol", u.getRol())))
+            .orElse(ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("message", "Usuario o contraseña incorrectos")));
+    }
+
 
 }
 

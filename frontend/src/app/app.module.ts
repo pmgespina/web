@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration, withEventReplay } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,6 +16,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './login/login.component';
+import { HomeMedicoComponent } from './home-medico/home-medico.component';
+import { ParametrosMedicoComponent } from './parametros-medico/parametros-medico.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,8 @@ import { LoginComponent } from './login/login.component';
     HeaderComponent,
     FooterComponent,
     LoginComponent,
+    HomeMedicoComponent,
+    ParametrosMedicoComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,7 +43,8 @@ import { LoginComponent } from './login/login.component';
   ],
   providers: [
     provideClientHydration(withEventReplay()),
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
+    provideHttpClient(withFetch())
   ],
   bootstrap: [AppComponent]
 })

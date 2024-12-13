@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root', // Hace que el servicio esté disponible en toda la aplicación
 })
 export class LoginService {
-  private apiUrl = 'http://localhost:8080/api/login'; // URL 
+  private apiUrl =  `${environment.baseUrl}/usuarios/login`; // URL 
 
   constructor(private http: HttpClient) {}
 

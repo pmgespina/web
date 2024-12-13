@@ -7,7 +7,7 @@ import { LoginService } from '../services/login.service';
   standalone: false,
   
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
   username: string = '';
@@ -17,14 +17,29 @@ export class LoginComponent {
   constructor(private loginService: LoginService, private router: Router) {}
 
   onSubmit() {
+    console.log('Enviando credenciales:', this.username, this.password);
+
     this.loginService.authenticate(this.username, this.password).subscribe({
       next: (response) => {
-        console.log('Login exitoso:', response);
-        this.router.navigate(['/home']); // Redirige a la página "Home"
-      },
-      error: (error) => {
-        console.error('Error en el login:', error);
-        this.errorMessage = 'Usuario o contraseña incorrectos'; // Mensaje de error
+        console.log('Respuesta del backend:', response);
+        // Verifica que el backend devuelva el mensaje esperado
+        if (response.message === 'Login exitoso') {
+          console.log('Acceso concedido');
+          const rol = response.rol; // rol del usuario
+          localStorage.setItem('rol', rol);
+
+          if (rol === 'Medico') {
+            this.router.navigate(['/home-medico']); // home médico
+          } else if (rol === 'Paciente') {
+            this.router.navigate(['/home']); // home paciente
+          } 
+        } else {
+            this.errorMessage = 'Error inesperado en el login';
+          }
+        }, 
+      error: (err) => {
+        console.error('Error en el login:', err);
+        this.errorMessage = 'Usuario o contraseña incorrectos';
       },
     });
   }
