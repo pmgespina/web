@@ -1,8 +1,8 @@
 <mat-toolbar color="primary" *ngIf="showHeader">
-  <button mat-button *ngIf="rol === 'Paciente'" routerLink="/home">Inicio
+  <button mat-button *ngIf="rol == 'Paciente'" routerLink="/home">Inicio
       <mat-icon class="home-icon">home</mat-icon>
   </button>
-  <button mat-button *ngIf="rol === 'Medico'" routerLink="/home-medico">
+  <button mat-button *ngIf="rol == 'Medico'" routerLink="/home-medico">
     Inicio
     <mat-icon class="home-icon">home</mat-icon>
   </button>
@@ -15,7 +15,7 @@
   <button mat-button routerLink="/messaging">Mensaje
     <mat-icon>message</mat-icon>
   </button>
-  <button mat-button routerLink="/login">
+  <button mat-button (click)="logout()">
     Logout
     <mat-icon>logout</mat-icon>
   </button>
