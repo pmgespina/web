@@ -43,6 +43,7 @@ public class MedicoController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+
     // Guardar o actualizar un médico
     @PostMapping
     public ResponseEntity<Medico> guardar(@RequestBody Medico medico) {
