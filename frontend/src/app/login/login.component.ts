@@ -25,14 +25,18 @@ export class LoginComponent {
         // Verifica que el backend devuelva el mensaje esperado
         if (response.message === 'Login exitoso') {
           console.log('Acceso concedido');
-          const rol = response.rol; // rol del usuario
+          const rol = response.user.rol; // rol del usuario
           localStorage.setItem('rol', rol);
-          const medicoId = response.medicoId;
-          localStorage.setItem('medicoId', medicoId);
           if (rol === 'Medico') {
             this.router.navigate(['/home-medico']); // home médico
+            const medicoId = response.user.medicoId;
+            //localStorage.setItem('medicoId', medicoId);
+            localStorage.removeItem('pacienteId');
           } else if (rol === 'Paciente') {
             this.router.navigate(['/home']); // home paciente
+            const pacienteId = response.user.pacienteId;
+            localStorage.setItem('pacienteId', pacienteId);
+            localStorage.removeItem('medicoId');
           } 
         } else {
             this.errorMessage = 'Error inesperado en el login';
