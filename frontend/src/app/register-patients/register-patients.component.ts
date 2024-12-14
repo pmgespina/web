@@ -15,6 +15,7 @@ export class RegisterPatientsComponent implements OnInit {
 
   ngOnInit(): void {
     this.medicoId = Number(localStorage.getItem('medicoId')); // Obtén el ID del médico de localStorage
+    console.log('Medico ID:', this.medicoId);
     if (this.medicoId) {
       this.cargarPacientes();
     } else {
