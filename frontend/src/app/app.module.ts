@@ -18,6 +18,7 @@ import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './login/login.component';
 import { HomeMedicoComponent } from './home-medico/home-medico.component';
 import { ParametrosMedicoComponent } from './parametros-medico/parametros-medico.component';
+import { RegisterPatientsComponent } from './register-patients/register-patients.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { ParametrosMedicoComponent } from './parametros-medico/parametros-medico
     LoginComponent,
     HomeMedicoComponent,
     ParametrosMedicoComponent,
+    RegisterPatientsComponent,
   ],
   imports: [
     BrowserModule,

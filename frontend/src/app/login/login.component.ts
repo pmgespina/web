@@ -27,7 +27,8 @@ export class LoginComponent {
           console.log('Acceso concedido');
           const rol = response.rol; // rol del usuario
           localStorage.setItem('rol', rol);
-
+          const medicoId = response.medicoId;
+          localStorage.setItem('medicoId', medicoId);
           if (rol === 'Medico') {
             this.router.navigate(['/home-medico']); // home médico
           } else if (rol === 'Paciente') {

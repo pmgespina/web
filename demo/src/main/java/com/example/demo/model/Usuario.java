@@ -5,6 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Column;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Transient;
@@ -18,8 +19,8 @@ public class Usuario {
     private String username;
     private String password;
     private String rol; // Paciente, Medico
-
-    @Transient
+    
+    @Column(name = "medico_id")
     private Long medicoId; // ID del médico relacionado (solo para uso temporal)
 
     // Getters y Setters

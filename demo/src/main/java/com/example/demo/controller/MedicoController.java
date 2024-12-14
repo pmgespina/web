@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.model.Medico;
 import com.example.demo.service.MedicoService;
+import com.example.demo.model.Paciente;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,6 +32,14 @@ public class MedicoController {
     public ResponseEntity<Medico> obtenerPorId(@PathVariable Long id) {
         return medicoService.obtenerPorId(id)
                 .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    // Obtener pacientes asignados a un médico
+    @GetMapping("/{id}/pacientes")
+    public ResponseEntity<List<Paciente>> obtenerPacientes(@PathVariable Long id) {
+        return medicoService.obtenerPorId(id)
+                .map(medico -> ResponseEntity.ok(medico.getPacientes()))
                 .orElse(ResponseEntity.notFound().build());
     }
 

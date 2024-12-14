@@ -68,3 +68,8 @@ Caused by: java.lang.AssertionError
 	at org.h2.mvstore.FileStore.executeFileStoreOperation(FileStore.java:1893)
 	at org.h2.mvstore.MVStore.executeFilestoreOperation(MVStore.java:922)
 	... 13 more
+2024-12-13 18:32:51.664443+01:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "USUARIOS" no encontrada
+Table "USUARIOS" not found; SQL statement:
+INSERT INTO USUARIOS (ID, PASSWORD, ROL, USERNAME, MEDICO_ID, PACIENTE_ID) 
+VALUES (2, 'securepassword', 'Medico', 'carlos', 2, NULL) [42102-232]
