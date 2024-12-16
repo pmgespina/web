@@ -23,6 +23,9 @@ public class Usuario {
     @Column(name = "medico_id")
     private Long medicoId; // ID del médico relacionado (solo para uso temporal)
 
+    @Column(name = "paciente_id")
+    private Long pacienteId; // ID del paciente relacionado (solo para uso temporal)
+
     // Getters y Setters
     
     public String getUsername() {
@@ -55,6 +58,14 @@ public class Usuario {
 
     public void setMedicoId(Long medicoId) {
         this.medicoId = medicoId;
+    }
+
+    public Long getPacienteId() {
+        return pacienteId;
+    }
+
+    public void setPacienteId(Long pacienteId) {
+        this.pacienteId = pacienteId;
     }
 }
 

@@ -1,17 +1,17 @@
 <div class="hero">
-    <h1 class="title">Pacientes Asignados</h1>
-    <p class="subtitle">Revisa la lista de pacientes bajo tu cuidado.</p>
-  </div>
-  
-  <div class="features">
-    <!-- Iterar sobre los pacientes -->
-    <div class="feature-card" *ngFor="let paciente of pacientes">
-      <img src="assets/icons/monitoreo.png" alt="Paciente">
+  <h1 class="title">Pacientes Asignados</h1>
+  <p class="subtitle">Revisa la lista de pacientes bajo tu cuidado.</p>
+</div>
+
+<div class="patients-list">
+  <div class="patient-row" *ngFor="let paciente of pacientes">
+    <img src="assets/icons/user.png" alt="Usuario" class="patient-avatar" />
+    <div class="patient-info">
       <h2>{{ paciente.nombre }} {{ paciente.apellido }}</h2>
       <p>ID: {{ paciente.id }}</p>
-      <div class="actions">
-        <button (click)="verDetalles(paciente.id)">Ver Detalles</button>
-      </div>
+    </div>
+    <div class="actions">
+      <button (click)="verDetalles(paciente.id)"> Detalles</button>
     </div>
   </div>
-  
+</div>

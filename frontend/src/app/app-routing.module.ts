@@ -6,6 +6,7 @@ import { RegisterParametersComponent } from './register-parameters/register-para
 import { AppointmentsComponent } from './appointments/appointments.component';
 import { MensajesComponent } from './messaging/messaging.component';
 import { LoginComponent } from './login/login.component';
+import { RegisterPatientsComponent } from './register-patients/register-patients.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent }, // Ruta principal
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterParametersComponent },
   { path: 'appointments', component: AppointmentsComponent },
   { path: 'messaging', component: MensajesComponent },
+  { path: 'register-patients', component: RegisterPatientsComponent},
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: '**', redirectTo: '' }
 ];
