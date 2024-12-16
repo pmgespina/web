@@ -30,7 +30,7 @@ export class LoginComponent {
           if (rol === 'Medico') {
             this.router.navigate(['/home-medico']); // home médico
             const medicoId = response.user.medicoId;
-            //localStorage.setItem('medicoId', medicoId);
+            localStorage.setItem('medicoId', medicoId);
             localStorage.removeItem('pacienteId');
           } else if (rol === 'Paciente') {
             this.router.navigate(['/home']); // home paciente
