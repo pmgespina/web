@@ -74,19 +74,22 @@ El frontend está organizado en varias subcarpetas siguiendo:
 
 ## Instalación y Ejecución
 1. Clonar el repositorio:
-   bash
+   ```bash
    git clone https://github.com/pmgespina/web.git
-   
+   ```
 
 2. Backend:
    - Navega a la carpeta demo.
-   - Compila y ejecuta el backend con el comando ./mvnw spring-boot:run
+   - Compila y ejecuta el backend con el comando
+     ```bash
+     ./mvnw spring-boot:run
+     ```
 
 3. Frontend:
    - Navega a la carpeta del frontend.
    - Instala dependencias y ejecuta el servidor:
-     bash
+     ```bash
      ng serve --open
-     
+     ```
 
 4. Accede a la aplicación en http://localhost:4200
