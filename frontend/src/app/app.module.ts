@@ -17,7 +17,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './login/login.component';
 import { HomeMedicoComponent } from './home-medico/home-medico.component';
-import { ParametrosMedicoComponent } from './parametros-medico/parametros-medico.component';
 import { RegisterPatientsComponent } from './register-patients/register-patients.component';
 
 @NgModule({
@@ -31,7 +30,6 @@ import { RegisterPatientsComponent } from './register-patients/register-patients
     FooterComponent,
     LoginComponent,
     HomeMedicoComponent,
-    ParametrosMedicoComponent,
     RegisterPatientsComponent,
   ],
   imports: [
