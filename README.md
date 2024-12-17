@@ -33,7 +33,7 @@ El backend sigue una estructura basada en la arquitectura MVC (Modelo-Vista-Cont
 El frontend está organizado en varias subcarpetas siguiendo:
 
 ### 1. src
-- Carpeta principal que contiene el código fuente del frontend.
+Carpeta principal que contiene el código fuente del frontend.
 
 ### 2. Components
 - Contiene los componentes reutilizables de la interfaz.
@@ -43,17 +43,17 @@ El frontend está organizado en varias subcarpetas siguiendo:
   - .ts → Lógica del componente
 
 ### 3. Services
-- Define los servicios que gestionan la comunicación HTTP con el backend.
+Define los servicios que gestionan la comunicación HTTP con el backend.
 
 ### 4. Assets
-- Contiene archivos estáticos como imágenes, fuentes o archivos JSON.
+Contiene archivos estáticos como imágenes, fuentes o archivos JSON.
 
 ### 5. Routing
 - Define la configuración de las rutas de la aplicación.
 - Permite navegar entre componentes y páginas.
 
 ### 6. Utils o Helpers
-- Contiene funciones auxiliares reutilizables en toda la aplicación.
+Contiene funciones auxiliares reutilizables en toda la aplicación.
 
 ---
 
